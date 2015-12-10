@@ -1,0 +1,24 @@
+{
+  "name": "audio-player",
+  "version": "0.1.0",
+  "description": "A better looking web player.",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.13.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mskalandunas/audio-lightning-talk.git"
+  },
+  "author": "Mike Skalandunas <mskalandunas@gmail.com> (https://github.com/mskalandunas)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mskalandunas/audio-lightning-talk/issues"
+  },
+  "homepage": "https://github.com/mskalandunas/audio-lightning-talk#readme"
+}
