@@ -18,35 +18,31 @@
   <div class="container">
     <div class="row">
       <div class="twelve columns" style="margin-top: 25%">
+        <h1>Web Audio API</h1>
+        <ul>
+          <li>High level JavaScript API meant to process and synthesize audio in web applications</li>
+          <li>Used also for interactive and dynamic applications like web games, web comics, and any other interactive media
+      </div>
+    </div>
 
-        <div class="row">
-          <div class="play-bar"></div>
+    <div class="row">
+      <div class="twelve columns" style="margin-top: 10%">
+
+        <span>Click <span class="play">play</span> to start the music, and <span class="stop">stop</span> to stop.  If stopped and played again, the music will start from the beginning.</span>
+        <br>
+
+        <div class="player-container">
+          <span>
+            <i class="fa fa-play"></i>
+          </span>
+
+          <span>
+            <i class="fa fa-stop"></i>
+          </span>
         </div>
 
-        <div class="row">
-          <div class="six columns">
-            <span>
-              <i class="fa fa-fast-backward"></i>
-            </span>
+        <span class="more"><a href="http://www.html5rocks.com/en/tutorials/webaudio/intro/#disqus_thread" target="_blank">More examples.</a></span>
 
-            <span>
-              <i class="fa fa-play"></i>
-            </span>
-
-            <span>
-              <i class="fa fa-stop"></i>
-            </span>
-
-            <span>
-              <i class="fa fa-fast-forward"></i>
-            </span>
-          </div>
-
-          <div class="six columns">
-            <span id="time">00:00</span>
-          </div>
-
-        </div>
       </div>
     </div>
   </div>
@@ -65,5 +61,8 @@
 
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="./js/basic-playback.js"></script>
+  <script src="./js/context.js"></script>
+  <script src="./js/load.js"></script>
 </body>
 </html>
