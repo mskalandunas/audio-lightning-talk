@@ -1,72 +1,67 @@
+'use strict';
+
 (function() {
-    var context,
-        soundSource,
-        soundBuffer,
-        url = './audio/Mable.mp3';
+  var context,
+    soundSource,
+    soundBuffer,
+    url = './audio/Mable.mp3';
 
-    // Step 1 - Initialise the Audio Context
-    // There can be only one!
-    function init() {
-        if (typeof AudioContext !== "undefined") {
-            context = new AudioContext();
-        } else if (typeof webkitAudioContext !== "undefined") {
-            context = new webkitAudioContext();
-        } else {
-            throw new Error('AudioContext not supported. :(');
-        }
+  // initialize AudioContext
+  function init() {
+    if (typeof AudioContext !== 'undefined') {
+      context = new AudioContext();
+    } else if (typeof webkitAudioContext !== 'undefined') {
+      context = new webkitAudioContext();
+    } else {
+      throw new Error('Web Audio API is not supported in this browser.');
+    }
+  }
+
+  // load sound with XMLHttpRequest
+  function loadSound() {
+    var request = new XMLHttpRequest();
+    request.open('GET', url, true);
+    request.responseType = 'arraybuffer';
+
+    request.onload = function() {
+      var audioData = request.response;
+
+      audioGraph(audioData);
     }
 
-    // Step 2: Load our Sound using XHR
-    function startSound() {
-        // Note: this loads asynchronously
-        var request = new XMLHttpRequest();
-        request.open("GET", url, true);
-        request.responseType = "arraybuffer";
+    request.send();
+  }
 
-        // Our asynchronous callback
-        request.onload = function() {
-            var audioData = request.response;
+  // play & stop
+  function playSound() {
+    soundSource.start(context.currentTime);
+  }
 
-            audioGraph(audioData);
+  function stopSound() {
+    soundSource.stop(context.currentTime);
+  }
 
+  document.querySelector('.fa-play').addEventListener('click', loadSound);
+  document.querySelector('.fa-stop').addEventListener('click', stopSound);
 
-        };
+  function audioGraph(audioData) {
 
-        request.send();
-    }
+    // create a sound source
+    soundSource = context.createBufferSource();
 
-    // Finally: tell the source when to start
-    function playSound() {
-        // play the source now
-        soundSource.start(context.currentTime);
-    }
+    // audio context handles creating buffers from binary
+    context.decodeAudioData(audioData, function(soundBuffer) {
 
-    function stopSound() {
-        // stop the source now
-        soundSource.stop(context.currentTime);
-    }
+      // add buffered data to object
+      soundSource.buffer = soundBuffer;
 
-    // Events for the play/stop bottons
-    document.querySelector('.fa-play').addEventListener('click', startSound);
-    document.querySelector('.fa-stop').addEventListener('click', stopSound);
+      // send source to speakers
+      soundSource.connect(context.destination);
 
+      //play
+      playSound(soundSource);
+    })
+  }
 
-    // This is the code we are interested in
-    function audioGraph(audioData) {
-        // create a sound source
-        soundSource = context.createBufferSource();
-
-        // The Audio Context handles creating source buffers from raw binary
-        context.decodeAudioData(audioData, function(soundBuffer){
-            // Add the buffered data to our object
-            soundSource.buffer = soundBuffer;
-
-            // Plug the cable from one thing to the other
-            soundSource.connect(context.destination);
-
-            // Finally
-            playSound(soundSource);
-        });
-    }
-    init();
+  init(); // call init
 }());

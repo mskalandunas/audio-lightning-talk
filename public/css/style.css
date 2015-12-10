@@ -7,9 +7,17 @@
   color: #00ff99
 }
 
+.fa-play:active {
+  color: #00995c;
+}
+
 .fa-stop,
 .stop {
   color: #ff6666;
+}
+
+.fa-stop:active {
+  color: #e60000;
 }
 
 .more a,
@@ -18,12 +26,17 @@
 }
 
 .player-container {
-  margin-top: 40px;
+  margin-top: 25px;
+}
+
+.ul-header {
+  font-size: 16px;
 }
 
 li {
   list-style-type: disc;
 }
+
 /* FOOTER */
 
 footer {
