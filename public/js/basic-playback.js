@@ -8,12 +8,12 @@
 
   // initialize AudioContext
   function init() {
-    if (typeof AudioContext !== 'undefined') {
+    try {
+      window.AudioContext = window.AudioContext||window.webkitAudioContext;
       context = new AudioContext();
-    } else if (typeof webkitAudioContext !== 'undefined') {
-      context = new webkitAudioContext();
-    } else {
-      throw new Error('Web Audio API is not supported in this browser.');
+    }
+    catch(e) {
+      alert('Web Audio API is not supported in this browser');
     }
   }
 
@@ -32,7 +32,7 @@
     request.send();
   }
 
-  // play & stop
+  // play & stop functions
   function playSound() {
     soundSource.start(context.currentTime);
   }
