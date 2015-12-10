@@ -1,0 +1,44 @@
+body {
+  font-family: "Times New Roman";
+  background-color: black;
+  color: white;
+}
+
+#one {
+  font-size: 14px;
+  color: yellow;
+}
+
+#two {
+  font-size: 18px;
+  color: red;
+}
+
+#three {
+  font-size: 90px;
+  color: pink;
+}
+
+#four {
+  font-size: 12px;
+  color: blue;
+}
+
+#five {
+  font-size: 24px;
+  color: green;
+}
+
+#six {
+  font-size: 18px;
+  color: orange;
+}
+
+#eagle-box {
+  max-height: 200px;
+  width: auto;
+}
+
+#lizard {
+  max-height: 400px;
+}
